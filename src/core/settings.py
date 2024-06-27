@@ -21,6 +21,13 @@ ALLOWED_HOSTS = [
     "*",
 ]
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = "andreydecua@gmail.com"
+EMAIL_HOST_PASSWORD = "kvpb eadw ikri scec"
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -53,12 +60,12 @@ REST_FRAMEWORK = {
 
 DJOSER = {
     'LOGIN_FIELD': 'email',
-    'PASSWORD_RESET_CONFIRM_URL': '#/password/reset/confirm/{uid}/{token}',
-    'USERNAME_RESET_CONFIRM_URL': '#/username/reset/confirm/{uid}/{token}',
-    'ACTIVATION_URL': '#/activate/{uid}/{token}',
-    'SEND_ACTIVATION_EMAIL': False,
+    'PASSWORD_RESET_CONFIRM_URL': 'password/reset/confirm/{uid}/{token}',
+    'USERNAME_RESET_CONFIRM_URL': 'username/reset/confirm/{uid}/{token}',
+    'ACTIVATION_URL': 'activate/{uid}/{token}',
+    'SEND_ACTIVATION_EMAIL': True,
     'SERIALIZERS': {},
-
+    'TOKEN_MODEL': None,
     'SOCIAL_AUTH_TOKEN_STRATEGY': 'djoser.social.token.jwt.TokenStrategy',
     'SOCIAL_AUTH_ALLOWED_REDIRECT_URIS': (
         "http://127.0.0.1:8000",
@@ -123,9 +130,6 @@ SOCIAL_AUTH_GITHUB_SCOPE = ["email", ]
 
 SOCIAL_AUTH_TWITTER_OAUTH2_KEY = os.getenv("SOCIAL_AUTH_TWITTER_OAUTH2_KEY")
 SOCIAL_AUTH_TWITTER_OAUTH2_SECRET = os.getenv("SOCIAL_AUTH_TWITTER_OAUTH2_SECRET")
-
-SOCIAL_AUTH_INSTAGRAM_KEY = os.getenv("SOCIAL_AUTH_INSTAGRAM_KEY")
-SOCIAL_AUTH_INSTAGRAM_SECRET = os.getenv("SOCIAL_AUTH_INSTAGRAM_SECRET")
 
 SOCIAL_AUTH_LINKEDIN_OAUTH2_KEY = os.getenv("SOCIAL_AUTH_LINKEDIN_OAUTH2_KEY")
 SOCIAL_AUTH_LINKEDIN_OAUTH2_SECRET = os.getenv("SOCIAL_AUTH_LINKEDIN_OAUTH2_SECRET")
